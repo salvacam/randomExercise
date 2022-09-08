@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Exercise</title>
+
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=2, user-scalable=no" />
+
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+  	<meta name="theme-color" content="#CCC">
+
+	<link rel="icon" href="img/icon.png">
+
+  	<style type="text/css">
+  		html{
+  			width: 100%;
+  			height: 100%;
+		}
+
+		html.rest, 
+		.jumbotron.rest {
+	  		background: pink;
+		}
+
+		html.work,
+		.jumbotron.work {
+  			background: cyan;
+		}
+
+		body {
+		    font-family: Helvetica;
+		    font-size: 16px;
+		    min-width: 240px;
+		}
+
+		header {			
+		    background-color: #ccc;
+		    border-bottom: 1px solid #666;
+		}
+
+		header h3 {
+			width: 200px;
+		    margin: 0 auto;
+		    font-size: 20px;
+		    font-weight: bold;
+		    padding: 5px 0;
+		    padding-left: 3%;
+		    padding-right: 3%;
+		    padding-bottom: 2px;
+		    padding-top: 4px;
+		}
+
+		header h3 img {
+			margin-right: 15px;
+		}
+
+		.jumbotron {
+		    background-color: white;
+		}
+
+		.jumbotron.container {
+		  margin-right: 0px;
+		  margin-left: 0px;
+		  padding-left: 0px;
+		  padding-right: 5px;
+		}
+
+		.principal {
+		  margin-top: 5px;
+		  text-align: center;
+		}
+
+
+	  	.principal .title {
+		    display: inline-block;
+		    width: 50px;
+		    text-align: left;
+	  	}
+
+	  	.principal .value {
+		    width: 25px;
+		    height: 20px;
+		    font-size: 20px; 
+		    margin-left: 10px;
+		    margin-right: 10px;
+	  	}
+
+	  	.principal a,
+		.principal a:focus,
+		.principal a:hover,
+		.principal a.nv-select {
+		    height: 20px;
+		    font-size: 20px; 
+		    background-color: #0000FF;
+		    color: #FFFFFF;
+		        border-radius: 10px;
+
+	  	}
+
+	  
+	  	.principal a.nv-select {
+	    	border: 2px solid cyan;
+	  	}
+
+	  	.principal #setsValue {
+    		width: 48px;
+    		display: inline-block;
+	  	}
+
+		.chronoDiv span{
+		    width: 50px;
+		    height: 20px;
+		    font-size: 30px; 
+		    margin-left: 10px;
+		    margin-right: 10px;
+	  	}	
+
+		.chronoDiv span#timeRest {
+			font-weight: bold;
+		}
+
+		.modalPause,
+		.modalReset {
+     		display: flex;
+     		flex-direction: column;
+     		justify-content: center;
+    		align-items: center;
+    		position: fixed;
+    		width: 100%;
+		    height: 100%;
+    		background: grey;
+    		color: #FFF;
+    		font-size: 24px;
+    		opacity: 0.8;
+		}
+			.modalPause .close,
+			.modalReset .closeReset,
+			.modalReset .okReset {
+			    height: 20px;
+			    margin-top: 10px;
+			    font-size: 20px; 
+			    background-color: #0000FF;
+			    color: #FFFFFF;
+			    padding: 10px;
+		        border-radius: 10px;
+				opacity: 1;
+				text-align: center;
+			}
+
+			.modalPause .pauseText,
+			.modalReset .resetText {
+				color: #000;
+				opacity: 1;
+     			background: lightgrey;
+    			padding: 10px;
+    			border-radius: 10px;
+			}
+
+			.modalReset .buttonDiv {
+		    	display: inline-flex;
+    			justify-content: space-between;
+    			min-width: 100px;
+			}
+
+		div.clear {
+	  		height: 5px;
+		}
+
+		div.clearx5 {
+	  		height: 25px;
+		}
+
+		.hide {
+	  		display: none;
+		}
+  	</style>
+
+	<link rel="stylesheet" href="css/framework.min.css">  
+
+    <link rel="manifest" href="./manifest.json">
+
+    <meta name="description" content="Random Exercise">
+    <meta name="keywords" content="random exercise, random, exercise" />
+
+    <meta name="author" content="Salvador Camacho" /> 
+
+</head>
+
+<body>
+
+	<header>
+		<h3 style="width: 250px;">
+			<img src="img/icon.png" alt="icon" height="24">Random Exercise
+		</h3>                    
+	</header>
+
+	<div id="modalPause" class="hide modalPause">
+		<div class="pauseText">Has hecho todos hoy,<br> pulsa reset si quieres hacer más</div>
+		<div id="closePause" class="close">X</div>
+	</div>
+
+	<div id="modalReset" class="hide modalReset">
+		<div class="resetText">¿Estás seguro?</div>
+		<div class="buttonDiv">
+			<div id="okReset" class="okReset">Ok</div>
+			<div id="closeReset" class="closeReset">X</div>
+		</div>
+	</div>
+
+    <div class="container principal jumbotron" id="principalDiv">
+
+		<div id="setDiv" class="setDiv">
+			<div class="clear"></div>
+			<a id="reset" class="btn btn-c btn-sm navigatorChrono">Reset</a> <!-- pause and confirm -->
+			<a id="doExercise" class="btn btn-a btn-sm navigatorChrono" style="width: 100px;">Ejercicio</a>
+			<div class="clear"></div>
+			<h2 id="textExercise"></h2>
+		</div>
+	</div>
+	
+	    
+	<script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+
+</body>
+</html>
